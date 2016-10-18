@@ -33,4 +33,6 @@ import { Keg } from './keg.model';
     doneClicked() {
       this.doneClickedSender.emit();
     }
+
+    
   }

@@ -12,14 +12,25 @@ var core_1 = require('@angular/core');
 var KegListComponent = (function () {
     function KegListComponent() {
         this.clickSender = new core_1.EventEmitter();
+        this.filter = 'all';
     }
     KegListComponent.prototype.editButtonHasBeenClicked = function (kegToEdit) {
         this.clickSender.emit(kegToEdit);
+    };
+    // serveBeerHasBeenClicked() {
+    //   this.beersender.emit();
+    // }
+    KegListComponent.prototype.filterList = function (filterSelection) {
+        this.filter = filterSelection;
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Array)
     ], KegListComponent.prototype, "childKegList", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], KegListComponent.prototype, "pourKegList", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
@@ -27,7 +38,7 @@ var KegListComponent = (function () {
     KegListComponent = __decorate([
         core_1.Component({
             selector: 'keg-list',
-            template: "\n  <div *ngFor=\"let currentKeg of childKegList\">\n    <h3>{{ currentKeg.name }}</h3>\n    <h5>{{ currentKeg.brand }}, Price: {{ currentKeg.price}}, Alc%{{ currentKeg.alc }}</h5>\n    <button (click)=\"editButtonHasBeenClicked(currentKeg)\">Edit</button>\n  </div>\n  "
+            template: "\n\n\n  <div *ngFor=\"let currentKeg of childKegList | display_option:filter\">\n    <h3>{{ currentKeg.name }}</h3>\n    <h5>{{ currentKeg.brand }}, Price: {{ currentKeg.price}}, Alc%{{ currentKeg.alc }} Beers Left:{{ currentKeg.beers }}</h5>\n    <button (click)=\"editButtonHasBeenClicked(currentKeg)\">Edit</button>\n    <button (click)=\"servedBeerHasBeenClicked(currentKeg)\">Serve Beer</button>\n  </div>\n  <h2>Filter By:</h2>\n  <select (change)=\"filterList($event.target.value)\">\n    <option value=\"all\">All</option>\n    <option value=\"low\">Less than 10</option>\n    <option value=\"empty\">Empty</option>\n  </select>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], KegListComponent);

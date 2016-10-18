@@ -15,6 +15,7 @@ var app_component_1 = require('./app.component');
 var keg_list_component_1 = require('./keg-list.component');
 var new_keg_component_1 = require('./new-keg.component');
 var edit_keg_component_1 = require('./edit-keg.component');
+var lessthanten_pipe_1 = require('./lessthanten.pipe');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -25,7 +26,8 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 keg_list_component_1.KegListComponent,
                 new_keg_component_1.NewKegComponent,
-                edit_keg_component_1.EditKegComponent
+                edit_keg_component_1.EditKegComponent,
+                lessthanten_pipe_1.LessThanTenPipe
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

@@ -14,6 +14,8 @@ import { Keg } from './keg.model';
       [childSelectedKeg]="selectedKeg"
       (doneClickedSender)="finishedEditing()"
     ></edit-keg>
+    <pour-keg [childKegList]="pouredKeg"
+    (beerSender)="pourBeer()"></pour-keg>
   </div>
   `
 })
@@ -35,4 +37,12 @@ export class AppComponent {
     finishedEditing(){
       this.selectedKeg = null;
     }
+    pourBeer() {
+      if(this.pouredKeg.beers > 0) {
+        this.pouredKeg.beers--;
+    }  else {
+        alert("out of beer!");
+        }
+    }
+
   }

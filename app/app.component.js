@@ -28,10 +28,18 @@ var AppComponent = (function () {
     AppComponent.prototype.finishedEditing = function () {
         this.selectedKeg = null;
     };
+    AppComponent.prototype.pourBeer = function () {
+        if (this.pouredKeg.beers > 0) {
+            this.pouredKeg.beers--;
+        }
+        else {
+            alert("out of beer!");
+        }
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n  <div class=\"container\">\n\n    <keg-list [childKegList]=\"masterKegList\"\n    (clickSender)=\"showEdit($event)\"></keg-list>\n    <new-keg\n    (newKegSender)=\"addKeg($event)\"></new-keg>\n    <edit-keg\n      [childSelectedKeg]=\"selectedKeg\"\n      (doneClickedSender)=\"finishedEditing()\"\n    ></edit-keg>\n  </div>\n  "
+            template: "\n  <div class=\"container\">\n\n    <keg-list [childKegList]=\"masterKegList\"\n    (clickSender)=\"showEdit($event)\"></keg-list>\n    <new-keg\n    (newKegSender)=\"addKeg($event)\"></new-keg>\n    <edit-keg\n      [childSelectedKeg]=\"selectedKeg\"\n      (doneClickedSender)=\"finishedEditing()\"\n    ></edit-keg>\n    <pour-keg [childKegList]=\"pouredKeg\"\n    (beerSender)=\"pourBeer()\"></pour-keg>\n  </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
