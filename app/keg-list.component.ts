@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Keg } from './keg.model';
 
 @Component({
@@ -7,11 +7,15 @@ import { Keg } from './keg.model';
   <div *ngFor="let currentKeg of childKegList">
     <h3>{{ currentKeg.name }}</h3>
     <h5>{{ currentKeg.brand }}, Price: {{ currentKeg.price}}, Alc%{{ currentKeg.alc }}</h5>
+    <button (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
   </div>
   `
 })
 
 export class KegListComponent {
   @Input() childKegList: Keg[];
-  
+  @Output() clickSender = new EventEmitter();
+  editButtonHasBeenClicked(kegToEdit: Keg) {
+    this.clickSender.emit(kegToEdit);
+  }
 }

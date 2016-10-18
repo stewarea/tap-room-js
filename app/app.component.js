@@ -17,14 +17,21 @@ var AppComponent = (function () {
             new keg_model_1.Keg("Double Mountain", "Kolsch", 4.5, 5.9, 124),
             new keg_model_1.Keg("Rogue Dead Guy", "Ale", 8, 6.0, 124),
         ];
+        this.selectedKeg = null;
     }
     AppComponent.prototype.addKeg = function (newKegFromChild) {
         this.masterKegList.push(newKegFromChild);
     };
+    AppComponent.prototype.showEdit = function (clickedKeg) {
+        this.selectedKeg = clickedKeg;
+    };
+    AppComponent.prototype.finishedEditing = function () {
+        this.selectedKeg = null;
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n  <div class=\"container\">\n\n    <keg-list [childKegList]=\"masterKegList\"></keg-list>\n    <new-keg (newKegSender)=\"addKeg($event)\"></new-keg>\n\n  </div>\n  "
+            template: "\n  <div class=\"container\">\n\n    <keg-list [childKegList]=\"masterKegList\"\n    (clickSender)=\"showEdit($event)\"></keg-list>\n    <new-keg\n    (newKegSender)=\"addKeg($event)\"></new-keg>\n    <edit-keg\n      [childSelectedKeg]=\"selectedKeg\"\n      (doneClickedSender)=\"finishedEditing()\"\n    ></edit-keg>\n  </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
